@@ -4,13 +4,18 @@
 #include <limits>
 using namespace std;
 
+/*
+========================================================================
+Main starts the program
+========================================================================
+*/
 int main() {
     Instructions instruct;
     bool flag = true;
     while (flag) {
         instruct.startScreen();
         cout << "Enter option by number.... ";
-        int start_option;
+        int start_option = 0;
         cin >> start_option;
         // If 1 is entered, play game
         if (start_option == 1) {
