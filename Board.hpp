@@ -36,7 +36,7 @@ public:
      * @param number: The horizontal position of piece placement
      * @param player: Either player 1 or player 2
      */
-    void add_board(string letter, int number, int player);
+    void add_piece(string letter, int number, int player);
 
 };
 #endif
