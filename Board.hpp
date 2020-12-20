@@ -30,6 +30,13 @@ public:
      */
     void print_board();
 
+    /*
+     * Add player piece (either X or O) to board
+     * @param letter: The vertical position of piece placement
+     * @param number: The horizontal position of piece placement
+     * @param player: Either player 1 or player 2
+     */
+    void add_board(string letter, int number, int player);
 
 };
 #endif
