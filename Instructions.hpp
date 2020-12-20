@@ -1,28 +1,27 @@
 #ifndef INSTRUCTIONS_H
 #define INSTRUCTIONS_H
 
-// ------ Includes ------
+// ----- Includes -----
 #include <string>
 #include <vector>
 #include <iostream>
 using namespace std;
 
-// ------ Defines -------
-#define BOARD_WIDTH 8
-#define BOARD_HEIGHT 7
+// ----- Defines -----
+
 
 // ------------------------------------------------------------------------
 //                                 Board
 // ------------------------------------------------------------------------
 
-class Board
-{
+class Instructions {
+    
 private:
 
 public:
 
-    vector< vector<string> > mBoard;   
-    Board();
-    void printBoard();
+    void startScreen();
+    void instructions();
+
 };
 #endif
