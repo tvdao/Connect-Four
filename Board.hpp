@@ -49,6 +49,6 @@ public:
     /*
      * Alternate turns between Players 1 and 2
      */
-    void alternate_turns();
+    int alternate_turns();
 };
 #endif
