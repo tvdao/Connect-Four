@@ -49,5 +49,11 @@ public:
      * @return 0 if player 2, 1 if player 1
      */
     int alternate_turns();
+
+    /* Getter method for turn
+     * @return the variable turn
+     */
+    int get_turn();
+
 };
 #endif
