@@ -50,17 +50,47 @@ void Board::print_board() {
         cout << endl;
         cout << endl;
     }
+}
+/*
+ * Alternate turns between Players 1 and 2
+ * @return 0 if player 2, 1 if player 1
+ */
+int Board::alternate_turns() {
+    if (turn%2 == 0) { 
+        return 0;
+    }
+    else {
+        return 1;
+    }
+ }
 
- /*
-  * Alternate turns between Players 1 and 2
-  * @return 0 if player 2, 1 if player 1
-  */
-    int alternate_turns() {
-        if (turn%2 == 0) {
-            return 0;
-        }
-        else {
-            return 1;
+/*
+ * Add player piece (either X or O) to board
+ * @param letter: The vertical position of piece placement
+ * @param number: The horizontal position of piece placement
+ */
+void Board::add_piece(string letter, int number) {
+    int player = alternate_turns();
+    string piece;
+    // Assign the piece based off of alternate_turns
+    if (player == 0) {
+        piece = "X";
+    }
+    else {
+        piece = "O";
+    }
+    for (int i = 0; i < mBoard.size(); i++) {
+        // If letter matches the current letter on the side
+        if (mBoard[i][0] == letter) {
+            // If spot is empty
+            if (mBoard[i][number] == "-") {
+                mBoard[i][number] = piece;
+                turn++;
+            }
+            // If spot is filled already
+            else {
+                cout << "Piece is already there. Try Again in an empty spot" << endl;
+            }
         }
     }
 }
