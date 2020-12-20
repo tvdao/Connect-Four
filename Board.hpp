@@ -18,8 +18,11 @@ using namespace std;
 class Board
 {
 private:
+
     vector< vector<string> > mBoard;   
+    int turn = 1;
 public:
+
     /*
      * Initializes a board object, creating an empty board
      */
@@ -36,7 +39,11 @@ public:
      * @param number: The horizontal position of piece placement
      * @param player: Either player 1 or player 2
      */
-    void add_piece(string letter, int number, int player);
+    void add_piece(string letter, int number);
 
+    /*
+     * Checks if any player won
+     */
+    void check_win();
 };
 #endif
