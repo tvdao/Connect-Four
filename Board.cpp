@@ -98,6 +98,6 @@ void Board::add_piece(string letter, int number) {
 /* Getter method for turn
  * @return the variable turn
  */
-int get_turn() {
+int Board::get_turn() {
     return turn;
 }
