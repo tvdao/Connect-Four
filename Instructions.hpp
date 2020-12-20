@@ -7,11 +7,8 @@
 #include <iostream>
 using namespace std;
 
-// ----- Defines -----
-
-
 // ------------------------------------------------------------------------
-//                                 Board
+//                                 Instructions
 // ------------------------------------------------------------------------
 
 class Instructions {
@@ -21,7 +18,6 @@ private:
 public:
 
     void startScreen();
-    void instructions();
-
+    void howToPlay();
 };
 #endif
