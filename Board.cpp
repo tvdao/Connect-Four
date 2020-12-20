@@ -3,10 +3,8 @@
 using namespace std;
 
 /*
-========================================================================
-Board Constructor. Creates an empty 7x8 connect four board
-========================================================================
-*/
+ * Initializes a board object, creating an empty board
+ */
 Board::Board() {
     string top_label[] = { "1", "2", "3", "4", "5", "6", "7"};
     string side_label[] = { "A", "B", "C", "D", "E", "F"};
@@ -41,11 +39,9 @@ Board::Board() {
 }
 
 /*
-========================================================================
-Prints the current board state
-========================================================================
-*/
-void Board::printBoard() {
+ * Prints current state of Board
+ */
+void Board::print_board() {
     cout << endl;
     for (int i = 0; i < BOARD_HEIGHT; i++) {
         for (int j = 0; j < BOARD_WIDTH; j++) {

@@ -20,8 +20,16 @@ class Board
 private:
     vector< vector<string> > mBoard;   
 public:
-
+    /*
+     * Initializes a board object, creating an empty board
+     */
     Board();
-    void printBoard();
+
+    /*
+     * Prints current state of Board
+     */
+    void print_board();
+
+
 };
 #endif
