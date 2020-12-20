@@ -50,4 +50,17 @@ void Board::print_board() {
         cout << endl;
         cout << endl;
     }
+
+ /*
+  * Alternate turns between Players 1 and 2
+  * @return 0 if player 2, 1 if player 1
+  */
+    int alternate_turns() {
+        if (turn%2 == 0) {
+            return 0;
+        }
+        else {
+            return 1;
+        }
+    }
 }
