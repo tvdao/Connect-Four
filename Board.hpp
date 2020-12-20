@@ -20,9 +20,9 @@ class Board
 private:
 
     vector< vector<string> > mBoard;   
-    int turn = 1;
+    
 public:
-
+    int turn = 0;
     /*
      * Initializes a board object, creating an empty board
      */
