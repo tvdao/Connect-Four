@@ -48,7 +48,7 @@ public:
 
     /*
      * Alternate turns between Players 1 and 2
-     * @return 0 if player 2, anything != 0 if player 1
+     * @return 0 if player 2, 1 if player 1
      */
     int alternate_turns();
 };
