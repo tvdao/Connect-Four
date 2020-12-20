@@ -43,7 +43,7 @@ public:
     /*
      * Checks if any player won
      */
-    void check_win();
+    bool check_win();
 
     /*
      * Alternate turns between Players 1 and 2
