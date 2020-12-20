@@ -18,10 +18,9 @@ using namespace std;
 class Board
 {
 private:
-
+    vector< vector<string> > mBoard;   
 public:
 
-    vector< vector<string> > mBoard;   
     Board();
     void printBoard();
 };
