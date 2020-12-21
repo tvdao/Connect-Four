@@ -132,14 +132,51 @@ bool Board::check_horizontal(int vert, int hor) {
 }
 
 /*
+ * Helper method to check vertical win
+ * @param vert: Vertical index
+ * @param hor: Horizontal index 
+ */
+bool Board::check_vertical(int vert, int hor) {
+    string curr = mBoard[vert][hor];
+    if (curr == "-") {
+        return false;
+    }
+    int count = 1;
+    int index = vert-1;
+    while (count <= 4) {
+        if (curr == mBoard[index][hor]) {
+            count++;
+            index--;
+            
+        }
+        else {
+            break;
+        }
+    }
+    if (count == 4) {
+        return true;
+    }
+    else {
+        return false;
+    }
+}
+
+/*
  * Checks if any player won
  */
 bool Board::check_win() {
     // Check horizontal
     for (int i = mBoard.size()-1; i > 0; i--) {
-        for (int j = 1; j < 5; j++) {
-            if (check_horizontal(i, j)) {
-                return true;
+        for (int j = 1; j < mBoard[i].size(); j++) {
+            if (j < 5) {
+                if (check_horizontal(i, j)) {
+                    return true;
+                }   
+            }
+            if (i-3 > 0) {
+                if (check_vertical(i, j)) {
+                    return true;
+                }
             }
         }
     }
