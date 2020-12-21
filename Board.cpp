@@ -107,12 +107,12 @@ int Board::get_turn() {
  * @param vert: Vertical index
  * @param hor: Horizontal index 
  */
-bool check_horizontal(int vert, int hor) {
-    string curr = mBoard[i][j];
+bool Board::check_horizontal(int vert, int hor) {
+    string curr = mBoard[vert][hor];
     int count = 1;
-    int index = j+1;
+    int index = hor+1;
     while (count <= 4) {
-        if (curr == mBoard[i][index]) {
+        if (curr == mBoard[vert][index]) {
             count++;
             index++;
         }
