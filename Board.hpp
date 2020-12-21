@@ -76,5 +76,9 @@ public:
      */
     bool check_diagonal(int vert, int hor);
 
+    /*
+     * Clears the board
+     */
+    void board_clear();
 };
 #endif
