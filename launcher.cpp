@@ -11,6 +11,7 @@ Main starts the program
 */
 int main() {
     Instructions instruct;
+    Board board;
     bool flag = true;
     while (flag) {
         instruct.startScreen();
@@ -19,7 +20,38 @@ int main() {
         cin >> start_option;
         // If 1 is entered, play game
         if (start_option == 1) {
-
+            while(true) {
+                board.print_board();
+                string letter = "";
+                int number = 0;
+                if (board.get_turn()%2 == 0) {
+                    cout << "Player 1, enter where you want to place your piece (Letter Number).... ";
+                }
+                else {
+                    cout << "Player 2, enter where you want to place your piece (Letter Number).... ";
+                }
+                cin >> letter >> number;
+                board.add_piece(letter, number);
+                if (board.check_win()) {
+                    board.print_board();
+                    if (board.get_turn()%2 == 0) {
+                        cout << "Player 2 wins!" << endl;
+                    }
+                    else {
+                        cout << "Player 1 wins!" << endl;
+                    }
+                    cout << "Enter P to play again, anything else to quit.... ";
+                    string res = "";
+                    cin >> res;
+                    if (res == "P") {
+                        board.board_clear();
+                    }
+                    else {
+                        flag = false;
+                        break;
+                    }
+                }
+            }
         }
         // If 2 is entered, print instructions
         else if (start_option == 2) {
