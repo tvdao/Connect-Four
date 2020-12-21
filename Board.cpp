@@ -109,6 +109,9 @@ int Board::get_turn() {
  */
 bool Board::check_horizontal(int vert, int hor) {
     string curr = mBoard[vert][hor];
+    if (curr == "-") {
+        return false;
+    }
     int count = 1;
     int index = hor+1;
     while (count <= 4) {
