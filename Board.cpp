@@ -11,7 +11,7 @@ Board::Board() {
 
     for (int i = 0; i < 8; i++) {
         vector<string> row;
-        for (int j = 0; j < 7; j++) {
+        for (int j = 0; j < 8; j++) {
             // Writes in top label
             if ((i == 0) && (j > 0)) {
                 row[j] = top_label[j-1];
@@ -100,4 +100,11 @@ void Board::add_piece(string letter, int number) {
  */
 int Board::get_turn() {
     return turn;
+}
+
+/*
+ * Checks if any player won
+ */
+bool Board::check_win() {
+    return false;
 }
