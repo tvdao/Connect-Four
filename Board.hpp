@@ -55,5 +55,19 @@ public:
      */
     int get_turn();
 
+    /*
+     * Helper method to check horizontal win
+     * @param vert: Vertical index
+     * @param hor: Horizontal index 
+     */
+    bool check_horizontal(int vert, int hor);
+
+    /*
+     * Helper method to check vertical win
+     * @param vert: Vertical index
+     * @param hor: Horizontal index 
+     */
+    bool check_vertical(int vert, int hor);
+
 };
 #endif
