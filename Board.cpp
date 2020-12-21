@@ -147,13 +147,79 @@ bool Board::check_vertical(int vert, int hor) {
         if (curr == mBoard[index][hor]) {
             count++;
             index--;
-            
         }
         else {
             break;
         }
     }
     if (count == 4) {
+        return true;
+    }
+    else {
+        return false;
+    }
+}
+
+/*
+ * Helper method to check diagonal win
+ * @param vert: Vertical index
+ * @param hor: Horizontal index 
+ */
+bool Board::check_diagonal(int vert, int hor) {
+    string curr = mBoard[vert][hor];
+    if (curr == "-") {
+        return false;
+    }
+    int count = 0;
+    int left_dia_count = 0;
+    int right_dia_count = 0;
+    if (hor == 4) {
+        for (int i = 0; i < 4; i++) {
+            if (mBoard[vert][hor] == curr) {
+                right_dia_count++;
+                vert--;
+                hor++;
+            }
+            else {
+                break;
+            }
+        }
+        for (int i = 0; i < 4; i++) {
+            if (mBoard[vert][hor] == curr) {
+                left_dia_count++;
+                vert--;
+                hor--;
+            }
+            else {
+                break;
+            }
+        }
+    }
+    else if (hor < 4) {
+        for (int i = 0; i < 4; i++) {
+            if (mBoard[vert][hor] == curr) {
+                count++;
+                vert--;
+                hor++;
+            }
+            else {
+                break;
+            }
+        }
+    }
+    else {
+        for (int i = 0; i < 4; i++) {
+            if (mBoard[vert][hor] == curr) {
+                count++;
+                vert--;
+                hor--;
+            }
+            else {
+                break;
+            }
+        }
+    }
+    if (right_dia_count == 4 || left_dia_count == 4 || count == 4) {
         return true;
     }
     else {
@@ -175,6 +241,11 @@ bool Board::check_win() {
             }
             if (i-3 > 0) {
                 if (check_vertical(i, j)) {
+                    return true;
+                }
+            }
+            if (i >= 4) {
+                if (check_diagonal(i, j)) {
                     return true;
                 }
             }
