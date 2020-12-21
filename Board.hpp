@@ -69,5 +69,12 @@ public:
      */
     bool check_vertical(int vert, int hor);
 
+    /*
+     * Helper method to check diagonal win
+     * @param vert: Vertical index
+     * @param hor: Horizontal index 
+     */
+    bool check_diagonal(int vert, int hor);
+
 };
 #endif
