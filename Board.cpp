@@ -251,4 +251,16 @@ bool Board::check_win() {
             }
         }
     }
+    return false;
+}
+
+/*
+ * Clears the board
+ */
+void Board::board_clear() {
+    for (int i = 1; i < mBoard.size(); i++) {
+        for (int j = 1; j < mBoard[i].size(); j++) {
+            mBoard[i][j] = "-";
+        }
+    }
 }
