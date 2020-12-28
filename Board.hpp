@@ -34,10 +34,9 @@ public:
 
     /*
      * Add player piece (either X or O) to board
-     * @param letter: The vertical position of piece placement
      * @param number: The horizontal position of piece placement
      */
-    void add_piece(string letter, int number);
+    void add_piece(int number);
 
     /*
      * Checks if any player won
