@@ -20,7 +20,7 @@ class Board
 private:
 
     vector< vector<string> > mBoard;   
-    int turn = 0;
+    int turn;
 public:
     /*
      * Initializes a board object, creating an empty board
