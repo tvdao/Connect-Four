@@ -156,12 +156,14 @@ bool Board::check_diagonal(int vert, int hor) {
     int count = 0;
     int left_dia_count = 0;
     int right_dia_count = 0;
-    if (hor == 4) {
+    if (hor == 3) {
+        int right_vert = vert;
+        int right_hor = hor;
         for (int i = 0; i < 4; i++) {
             if (mBoard[vert][hor] == curr) {
                 right_dia_count++;
-                vert--;
-                hor++;
+                right_vert--;
+                right_hor++;
             }
             else {
                 break;
@@ -178,7 +180,7 @@ bool Board::check_diagonal(int vert, int hor) {
             }
         }
     }
-    else if (hor < 4) {
+    else if (hor < 3) {
         for (int i = 0; i < 4; i++) {
             if (mBoard[vert][hor] == curr) {
                 count++;
@@ -217,7 +219,7 @@ bool Board::check_win() {
     // Check horizontal
     for (int i = BOARD_WIDTH_HEIGHT-1; i > 0; i--) {
         for (int j = 0; j < BOARD_WIDTH_HEIGHT; j++) {
-            if (j < 5) {
+            if (j < 4) {
                 if (check_horizontal(i, j)) {
                     return true;
                 }   
@@ -227,7 +229,7 @@ bool Board::check_win() {
                     return true;
                 }
             }
-            if (i >= 4) {
+            if (i > 3) {
                 if (check_diagonal(i, j)) {
                     return true;
                 }
@@ -241,8 +243,8 @@ bool Board::check_win() {
  * Clears the board
  */
 void Board::board_clear() {
-    for (int i = 1; i < BOARD_WIDTH_HEIGHT; i++) {
-        for (int j = 1; j < BOARD_WIDTH_HEIGHT; j++) {
+    for (int i = BOARD_WIDTH_HEIGHT-1; i > 0; i--) {
+        for (int j = 0; j < BOARD_WIDTH_HEIGHT; j++) {
             mBoard[i][j] = "-";
         }
     }
