@@ -8,9 +8,9 @@ using namespace std;
 Board::Board() {
     string top_label[] = { "1", "2", "3", "4", "5", "6", "7"};
     turn = 0;
-    for (int i = 0; i < BOARD_HEIGHT; i++) {
+    for (int i = 0; i < BOARD_WIDTH_HEIGHT; i++) {
         vector<string> row;
-        for (int j = 0; j < BOARD_WIDTH; j++) {
+        for (int j = 0; j < BOARD_WIDTH_HEIGHT; j++) {
             // Writes in top label
             if (i == 0) {
                 row.push_back(top_label[j]);
@@ -30,8 +30,8 @@ Board::Board() {
  */
 void Board::print_board() {
     cout << endl;
-    for (int i = 0; i < BOARD_HEIGHT; i++) {
-        for (int j = 0; j < BOARD_WIDTH; j++) {
+    for (int i = 0; i < BOARD_WIDTH_HEIGHT; i++) {
+        for (int j = 0; j < BOARD_WIDTH_HEIGHT; j++) {
             cout << mBoard[i][j] << "   ";
         }
         cout << endl;
@@ -66,7 +66,7 @@ void Board::add_piece(int number) {
         piece = "O";
     }
     // Checks for first available row to insert
-    for (int i = BOARD_HEIGHT-1; i > 0; i--) {
+    for (int i = BOARD_WIDTH_HEIGHT-1; i > 0; i--) {
         // If spot is empty
         if (mBoard[i][number-1] == "-") {
             mBoard[i][number-1] = piece;
@@ -215,8 +215,8 @@ bool Board::check_diagonal(int vert, int hor) {
  */
 bool Board::check_win() {
     // Check horizontal
-    for (int i = BOARD_HEIGHT-1; i > 0; i--) {
-        for (int j = 0; j < BOARD_WIDTH; j++) {
+    for (int i = BOARD_WIDTH_HEIGHT-1; i > 0; i--) {
+        for (int j = 0; j < BOARD_WIDTH_HEIGHT; j++) {
             if (j < 5) {
                 if (check_horizontal(i, j)) {
                     return true;
@@ -241,8 +241,8 @@ bool Board::check_win() {
  * Clears the board
  */
 void Board::board_clear() {
-    for (int i = 1; i < mBoard.size(); i++) {
-        for (int j = 1; j < mBoard[i].size(); j++) {
+    for (int i = 1; i < BOARD_WIDTH_HEIGHT; i++) {
+        for (int j = 1; j < BOARD_WIDTH_HEIGHT; j++) {
             mBoard[i][j] = "-";
         }
     }
