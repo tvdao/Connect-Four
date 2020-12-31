@@ -13,25 +13,26 @@ int main() {
     Instructions instruct;
     Board board;
     bool flag = true;
+
     while (flag) {
         instruct.startScreen();
         cout << "Enter option by number.... ";
         int start_option = 0;
         cin >> start_option;
+        
         // If 1 is entered, play game
         if (start_option == 1) {
             while(true) {
                 board.print_board();
-                string letter = "";
                 int number = 0;
                 if (board.get_turn()%2 == 0) {
-                    cout << "Player 1, enter where you want to place your piece (Letter Number).... ";
+                    cout << "Player 1, enter where you want to place your piece (Number).... ";
                 }
                 else {
-                    cout << "Player 2, enter where you want to place your piece (Letter Number).... ";
+                    cout << "Player 2, enter where you want to place your piece (Number).... ";
                 }
-                cin >> letter >> number;
-                board.add_piece(letter, number);
+                cin >> number;
+                board.add_piece(number);
                 if (board.check_win()) {
                     board.print_board();
                     if (board.get_turn()%2 == 0) {
