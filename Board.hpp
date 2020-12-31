@@ -17,10 +17,9 @@ using namespace std;
 class Board
 {
 private:
-
-    vector< vector<string> > mBoard;   
     int turn;
 public:
+    vector< vector<string> > mBoard;  
     /*
      * Initializes a board object, creating an empty board
      */
