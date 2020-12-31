@@ -9,6 +9,9 @@ using namespace std;
 
 // ------ Defines -------
 #define BOARD_WIDTH_HEIGHT 7
+#define FOUR 4
+#define THREE 3
+#define TWO 2
 
 // ------------------------------------------------------------------------
 //                                 Board

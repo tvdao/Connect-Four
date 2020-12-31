@@ -43,7 +43,7 @@ void Board::print_board() {
  * @return 0 if player 2, 1 if player 1
  */
 int Board::alternate_turns() {
-    if (turn%2 == 0) { 
+    if (turn%TWO == 0) { 
         return 0;
     }
     else {
@@ -99,7 +99,7 @@ bool Board::check_horizontal(int vert, int hor) {
     int count = 1;
     int index = hor+1;
     // Checks the horizontal for 4 in a row
-    while (count <= 4) {
+    while (count <= FOUR) {
         if (curr == mBoard[vert][index]) {
             count++;
             index++;
@@ -131,7 +131,7 @@ bool Board::check_vertical(int vert, int hor) {
     int index = vert-1;
 
     // Checks the vertical for 4 in a row
-    while (count <= 4) {
+    while (count <= FOUR) {
         if (curr == mBoard[index][hor]) {
             count++;
             index--;
@@ -140,7 +140,7 @@ bool Board::check_vertical(int vert, int hor) {
             break;
         }
     }
-    if (count == 4) {
+    if (count == FOUR) {
         return true;
     }
     else {
@@ -162,11 +162,11 @@ bool Board::check_diagonal(int vert, int hor) {
     int left_dia_count = 0;
     int right_dia_count = 0;
     // Only middle spot
-    if (hor == 3) {
+    if (hor == THREE) {
         int right_vert = vert;
         int right_hor = hor;
         // Checks right diagonal
-        for (int i = 0; i < 4; i++) {
+        for (int i = 0; i < FOUR; i++) {
             if (mBoard[right_vert][right_hor] == curr) {
                 right_dia_count++;
                 right_vert--;
@@ -177,7 +177,7 @@ bool Board::check_diagonal(int vert, int hor) {
             }
         }
         // Checks left diagonal
-        for (int i = 0; i < 4; i++) {
+        for (int i = 0; i < FOUR; i++) {
             if (mBoard[vert][hor] == curr) {
                 left_dia_count++;
                 vert--;
@@ -189,8 +189,8 @@ bool Board::check_diagonal(int vert, int hor) {
         }
     }
     // For horizontal spots 0, 1, 2
-    else if (hor < 3) {
-        for (int i = 0; i < 4; i++) {
+    else if (hor < THREE) {
+        for (int i = 0; i < FOUR; i++) {
             if (mBoard[vert][hor] == curr) {
                 count++;
                 vert--;
@@ -203,7 +203,7 @@ bool Board::check_diagonal(int vert, int hor) {
     }
     // For horizontal spots 4, 5, 6
     else {
-        for (int i = 0; i < 4; i++) {
+        for (int i = 0; i < FOUR; i++) {
             if (mBoard[vert][hor] == curr) {
                 count++;
                 vert--;
@@ -215,7 +215,7 @@ bool Board::check_diagonal(int vert, int hor) {
         }
     }
     // Checks if the count is 4, which means there is a 4 in a row/vertical/diagonal
-    if (right_dia_count == 4 || left_dia_count == 4 || count == 4) {
+    if (right_dia_count == FOUR || left_dia_count == FOUR || count == FOUR) {
         return true;
     }
     else {
@@ -230,19 +230,19 @@ bool Board::check_win() {
     for (int i = BOARD_WIDTH_HEIGHT-1; i > 0; i--) {
         for (int j = 0; j < BOARD_WIDTH_HEIGHT; j++) {
             // Checks horizontal win
-            if (j < 4) {
+            if (j < FOUR) {
                 if (check_horizontal(i, j)) {
                     return true;
                 }   
             }
             // Checks vertical win
-            if (i-3 > 0) {
+            if (i-THREE > 0) {
                 if (check_vertical(i, j)) {
                     return true;
                 }
             }
             // Checks diagonal win
-            if (i > 3) {
+            if (i > THREE) {
                 if (check_diagonal(i, j)) {
                     return true;
                 }
