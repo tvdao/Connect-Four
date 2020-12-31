@@ -160,7 +160,7 @@ bool Board::check_diagonal(int vert, int hor) {
         int right_vert = vert;
         int right_hor = hor;
         for (int i = 0; i < 4; i++) {
-            if (mBoard[vert][hor] == curr) {
+            if (mBoard[right_vert][right_hor] == curr) {
                 right_dia_count++;
                 right_vert--;
                 right_hor++;
