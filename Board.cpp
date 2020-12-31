@@ -7,31 +7,18 @@ using namespace std;
  */
 Board::Board() {
     string top_label[] = { "1", "2", "3", "4", "5", "6", "7"};
-    string side_label[] = { "A", "B", "C", "D", "E", "F"};
     turn = 0;
-    for (int i = 0; i < 8; i++) {
+    for (int i = 0; i < BOARD_HEIGHT; i++) {
         vector<string> row;
-        for (int j = 0; j < 8; j++) {
+        for (int j = 0; j < BOARD_WIDTH; j++) {
             // Writes in top label
-            if ((i == 0) && (j > 0)) {
-                row[j] = top_label[j-1];
-                row.push_back(top_label[j-1]);
-            }
-            // Writes in side label
-            else if ((i > 0) && (j == 0)) {
-                // row[i] = side_label[i-1];
-                row.push_back(side_label[i-1]);
+            if (i == 0) {
+                row.push_back(top_label[j]);
             }
             // Writes in empty cells
             else {
-                if ((i == 0) && (j == 0)) {
-                    // row[0] = " ";
-                    row.push_back(" ");
-                }
-                else {
-                    // row[j] = "-";
-                    row.push_back("-");
-                }
+                // row[j] = "-";
+                row.push_back("-");
             }
         }
         mBoard.push_back(row);
@@ -66,10 +53,9 @@ int Board::alternate_turns() {
 
 /*
  * Add player piece (either X or O) to board
- * @param letter: The vertical position of piece placement
  * @param number: The horizontal position of piece placement
  */
-void Board::add_piece(string letter, int number) {
+void Board::add_piece(int number) {
     int player = alternate_turns();
     string piece;
     // Assign the piece based off of alternate_turns
@@ -79,20 +65,31 @@ void Board::add_piece(string letter, int number) {
     else {
         piece = "O";
     }
-    for (int i = 0; i < mBoard.size(); i++) {
-        // If letter matches the current letter on the side
-        if (mBoard[i][0] == letter) {
-            // If spot is empty
-            if (mBoard[i][number] == "-") {
-                mBoard[i][number] = piece;
-                turn++;
-            }
-            // If spot is filled already
-            else {
-                cout << "Piece is already there. Try Again in an empty spot" << endl;
-            }
-        }
-    }
+    // // Checks for first available row to insert
+    // for (int i = 6; i > 0; i--) {
+    //     // If spot is empty
+    //     if (mBoard[i][number] == "-") {
+    //         mBoard[i][number] = piece;
+    //         turn++;
+    //         return;
+    //     }
+    // }
+    cout << "No available spot" << endl;
+    return;
+    // for (int i = 0; i < mBoard.size(); i++) {
+    //     // If letter matches the current letter on the side
+    //     if (mBoard[i][0] == letter) {
+    //         // If spot is empty
+    //         if (mBoard[i][number] == "-") {
+    //             mBoard[i][number] = piece;
+    //             turn++;
+    //         }
+    //         // If spot is filled already
+    //         else {
+    //             cout << "Piece is already there. Try Again in an empty spot" << endl;
+    //         }
+    //     }
+    // }
 }
 
 /* Getter method for turn
