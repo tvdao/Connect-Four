@@ -8,8 +8,7 @@
 using namespace std;
 
 // ------ Defines -------
-#define BOARD_WIDTH 7
-#define BOARD_HEIGHT 7
+#define BOARD_WIDTH_HEIGHT 7
 
 // ------------------------------------------------------------------------
 //                                 Board
