@@ -65,31 +65,17 @@ void Board::add_piece(int number) {
     else {
         piece = "O";
     }
-    // // Checks for first available row to insert
-    // for (int i = 6; i > 0; i--) {
-    //     // If spot is empty
-    //     if (mBoard[i][number] == "-") {
-    //         mBoard[i][number] = piece;
-    //         turn++;
-    //         return;
-    //     }
-    // }
+    // Checks for first available row to insert
+    for (int i = BOARD_HEIGHT-1; i > 0; i--) {
+        // If spot is empty
+        if (mBoard[i][number-1] == "-") {
+            mBoard[i][number-1] = piece;
+            turn++;
+            return;
+        }
+    }
     cout << "No available spot" << endl;
     return;
-    // for (int i = 0; i < mBoard.size(); i++) {
-    //     // If letter matches the current letter on the side
-    //     if (mBoard[i][0] == letter) {
-    //         // If spot is empty
-    //         if (mBoard[i][number] == "-") {
-    //             mBoard[i][number] = piece;
-    //             turn++;
-    //         }
-    //         // If spot is filled already
-    //         else {
-    //             cout << "Piece is already there. Try Again in an empty spot" << endl;
-    //         }
-    //     }
-    // }
 }
 
 /* Getter method for turn
