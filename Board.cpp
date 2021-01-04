@@ -89,16 +89,16 @@ void Board::add_piece(int number) {
 bool Board::check_horizontal(int vert, int hor, vector< vector<string> > board, string player) {
     string curr = player;
     // If "-", then there is no connect four
-    if (curr == "-") {
+    if (board[vert][hor] == "-") {
         return false;
     }
-    int count = 1;
-    int index = hor+1;
+    int count = 0;
     // Checks the horizontal for 4 in a row
-    while (count <= FOUR) {
-        if (curr == board[vert][index]) {
+    while (count < FOUR) {
+        if (curr == board[vert][hor]) {
+            cout << "vert: " << vert << " index: " << hor << " | "<<  board[vert][hor] << endl;
             count++;
-            index++;
+            hor++;
         }
         else {
             break;
@@ -123,7 +123,7 @@ bool Board::check_horizontal(int vert, int hor, vector< vector<string> > board, 
 bool Board::check_vertical(int vert, int hor, vector< vector<string> > board, string player) {
     string curr = player;
     // If "-", then there is no connect four
-    if (curr == "-") {
+    if (board[vert][hor] == "-") {
         return false;
     }
     int count = 1;
@@ -157,7 +157,7 @@ bool Board::check_vertical(int vert, int hor, vector< vector<string> > board, st
  */
 bool Board::check_diagonal(int vert, int hor, vector< vector<string> > board, string player) {
     string curr = player;
-    if (curr == "-") {
+    if (board[vert][hor] == "-") {
         return false;
     }
     int count = 0;
