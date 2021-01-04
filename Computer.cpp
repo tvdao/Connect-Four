@@ -18,7 +18,7 @@ Computer::Computer(Board board_object) {
  * @param board: The current state of the board
  * @return: a true if moves remaining, false if none
  */
-bool is_moves_left(vector<vector<string>> board) {
+bool Computer::is_moves_left(vector<vector<string>> board) {
     for (int i = 1; i < board.size(); i++) {
         if (board[1][i] == "-") {
             return true;
@@ -33,6 +33,6 @@ bool is_moves_left(vector<vector<string>> board) {
  * @param player: The current player
  * @return: true if there is a win, false if not
  */ 
-bool winning(vector<vector<string>> board, string player) {
+bool Computer::winning(vector<vector<string>> board, string player) {
     return board_obj.check_win(board, player);
 }
