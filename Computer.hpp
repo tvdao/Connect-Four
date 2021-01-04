@@ -13,9 +13,14 @@ class Computer {
 
         string human_player;
         string ai_player;
+        vector<vector<string>> board;
     public:
 
-        Computer();
+        /*
+        * Initializes a computer object
+        * @param board_object: A Board object to get the curr board state
+        */
+        Computer(Board::Board board_object);
 
         /*
          * Returns a vector of the indexes of empty spots on the board

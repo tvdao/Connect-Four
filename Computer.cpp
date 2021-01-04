@@ -4,10 +4,12 @@ using namespace std;
 
 /*
  * Initializes a computer object
+ * @param board_object: A Board object to get the curr board state
  */
-Computer::Computer() {
+Computer::Computer(Board::Board board_object) {
     human_player = "O";
     ai_player = "X";
+    board = board_object.mBoard;
 }
 
 /*
@@ -29,3 +31,13 @@ Computer::Computer() {
      }
      return empty;
  }
+
+ /*
+ * Checks win for the player
+ * @param board: The current state of the board
+ * @param player: The current player
+ * @return: true if there is a win, false if not
+ */ 
+bool winning(vector<vector<string>> board, string player) {
+
+}
