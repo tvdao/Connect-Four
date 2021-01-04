@@ -6,31 +6,26 @@ using namespace std;
  * Initializes a computer object
  * @param board_object: A Board object to get the curr board state
  */
-Computer::Computer(Board::Board board_object) {
+Computer::Computer(Board board_object) {
     human_player = "O";
     ai_player = "X";
-    board = board_object.mBoard;
+    curr_board = board_object.mBoard;
+    board_obj = board_object;
 }
 
-/*
- * Returns a vector of the indexes of empty spots on the board
+ /*
+ * Returns true if moves remaining, else return false if none
  * @param board: The current state of the board
- * @return: a vector on indexes
+ * @return: a true if moves remaining, false if none
  */
- vector<int> empty_indexes(vector<vector<string>> board) {
-     vector<int> empty;
-     for (int i = 0; i < empty.size(); i++) {
-         // if top row has "-", then there is an empty spot in that column
-         if (board[1][i] == "-") {
-             empty.push_back(i);
-         }
-         // '10' represents not empty
-         else {
-             empty.push_back(TEN);
-         }
-     }
-     return empty;
- }
+bool is_moves_left(vector<vector<string>> board) {
+    for (int i = 1; i < board.size(); i++) {
+        if (board[1][i] == "-") {
+            return true;
+        }
+    }
+    return false;
+}
 
  /*
  * Checks win for the player
@@ -39,5 +34,5 @@ Computer::Computer(Board::Board board_object) {
  * @return: true if there is a win, false if not
  */ 
 bool winning(vector<vector<string>> board, string player) {
-    return check_win(board, player);
+    return board_obj.check_win(board, player);
 }

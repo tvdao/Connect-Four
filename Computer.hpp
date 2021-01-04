@@ -13,21 +13,22 @@ class Computer {
 
         string human_player;
         string ai_player;
-        vector<vector<string>> board;
+        vector<vector<string>> curr_board;
+        Board board_obj;
     public:
 
         /*
         * Initializes a computer object
         * @param board_object: A Board object to get the curr board state
         */
-        Computer(Board::Board board_object);
+        Computer(Board board_object);
 
         /*
-         * Returns a vector of the indexes of empty spots on the board
+         * Returns true if moves remaining, else return false if none
          * @param board: The current state of the board
-         * @return: a vector on indexes
+         * @return: a true if moves remaining, false if none
          */
-        vector<int> empty_indexes(vector<vector<string>> board);
+        bool is_moves_left(vector<vector<string>> board);
 
         /*
          * Checks win for the player
@@ -41,7 +42,9 @@ class Computer {
          * Checks win for the player
          * @param board: The current state of the board
          * @param player: The current player
+         * @return: The evaluation value 
          */ 
+        int minimax(vector<vector<string>> board, string player);
         
         
 };
