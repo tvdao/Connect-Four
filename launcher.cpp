@@ -25,17 +25,20 @@ int main() {
             while(true) {
                 board.print_board();
                 int number = 0;
-                if (board.get_turn()%2 == 0) {
+                string player = "";
+                if (board.alternate_turns() == 0) {
                     cout << "Player 1, enter where you want to place your piece (Number).... ";
+                    player = "X";
                 }
                 else {
                     cout << "Player 2, enter where you want to place your piece (Number).... ";
+                    player = "O";
                 }
                 cin >> number;
                 board.add_piece(number);
-                if (board.check_win()) {
+                if (board.check_win(board.mBoard, player)) {
                     board.print_board();
-                    if (board.get_turn()%2 == 0) {
+                    if (board.alternate_turns() == 0) {
                         cout << "Player 2 wins!" << endl;
                     }
                     else {
