@@ -16,7 +16,7 @@ Computer::Computer() {
  * @return: a vector on indexes
  */
  vector<int> empty_indexes(vector<vector<string>> board) {
-     vector<string> empty;
+     vector<int> empty;
      for (int i = 0; i < empty.size(); i++) {
          // if top row has "-", then there is an empty spot in that column
          if (board[1][i] == "-") {
@@ -27,4 +27,5 @@ Computer::Computer() {
              empty.push_back(TEN);
          }
      }
+     return empty;
  }
