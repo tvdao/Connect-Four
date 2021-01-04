@@ -19,8 +19,9 @@ class Computer {
         /*
          * Returns a vector of the indexes of empty spots on the board
          * @param board: The current state of the board
+         * @return: a vector on indexes
          */
-        vector<string> empty_indexes(vector<vector<string>> board);
+        vector<int> empty_indexes(vector<vector<string>> board);
 
         /*
          * Checks win for the player
