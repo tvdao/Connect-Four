@@ -28,6 +28,7 @@ class Computer {
          * Checks win for the player
          * @param board: The current state of the board
          * @param player: The current player
+         * @return: true if there is a win, false if not
          */ 
         bool winning(vector<vector<string>> board, string player);
 

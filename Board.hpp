@@ -41,8 +41,11 @@ public:
 
     /*
      * Checks if any player won
+     * @param board: Current state of board
+     * @param player: Current player
+     * return: True if win, false if not
      */
-    bool check_win();
+    bool check_win(vector<vector<string>> board, string player);
 
     /*
      * Alternate turns between Players 1 and 2
@@ -50,31 +53,35 @@ public:
      */
     int alternate_turns();
 
-    /* Getter method for turn
-     * @return the variable turn
-     */
-    int get_turn();
-
     /*
      * Helper method to check horizontal win
      * @param vert: Vertical index
      * @param hor: Horizontal index 
+     * @param board: Current state of board
+     * @param player: Current player
+     * return: True if win, false if not
      */
-    bool check_horizontal(int vert, int hor);
+    bool check_horizontal(int vert, int hor, vector<vector<string>> board, string player);
 
     /*
      * Helper method to check vertical win
      * @param vert: Vertical index
      * @param hor: Horizontal index 
+     * @param board: Current state of board
+     * @param player: Current player
+     * return: True if win, false if not
      */
-    bool check_vertical(int vert, int hor);
+    bool check_vertical(int vert, int hor, vector<vector<string>> board, string player);
 
     /*
      * Helper method to check diagonal win
      * @param vert: Vertical index
      * @param hor: Horizontal index 
+     * @param board: Current state of board
+     * @param player: Current player
+     * return: True if win, false if not
      */
-    bool check_diagonal(int vert, int hor);
+    bool check_diagonal(int vert, int hor, vector<vector<string>> board, string player);
 
     /*
      * Clears the board

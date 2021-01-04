@@ -78,20 +78,16 @@ void Board::add_piece(int number) {
     return;
 }
 
-/* Getter method for turn
- * @return the variable turn
- */
-int Board::get_turn() {
-    return turn;
-}
-
 /*
  * Helper method to check horizontal win
  * @param vert: Vertical index
- * @param hor: Horizontal index 
+ * @param hor: Horizontal index
+ * @param board: Current state of board
+ * @param player: Current player
+ * return: True if win, false if not 
  */
-bool Board::check_horizontal(int vert, int hor) {
-    string curr = mBoard[vert][hor];
+bool Board::check_horizontal(int vert, int hor, vector< vector<string> > board, string player) {
+    string curr = player;
     // If "-", then there is no connect four
     if (curr == "-") {
         return false;
@@ -100,7 +96,7 @@ bool Board::check_horizontal(int vert, int hor) {
     int index = hor+1;
     // Checks the horizontal for 4 in a row
     while (count <= FOUR) {
-        if (curr == mBoard[vert][index]) {
+        if (curr == board[vert][index]) {
             count++;
             index++;
         }
@@ -120,9 +116,12 @@ bool Board::check_horizontal(int vert, int hor) {
  * Helper method to check vertical win
  * @param vert: Vertical index
  * @param hor: Horizontal index 
+ * @param board: Current state of board
+ * @param player: Current player
+ * return: True if win, false if not
  */
-bool Board::check_vertical(int vert, int hor) {
-    string curr = mBoard[vert][hor];
+bool Board::check_vertical(int vert, int hor, vector< vector<string> > board, string player) {
+    string curr = player;
     // If "-", then there is no connect four
     if (curr == "-") {
         return false;
@@ -132,7 +131,7 @@ bool Board::check_vertical(int vert, int hor) {
 
     // Checks the vertical for 4 in a row
     while (count <= FOUR) {
-        if (curr == mBoard[index][hor]) {
+        if (curr == board[index][hor]) {
             count++;
             index--;
         }
@@ -152,9 +151,12 @@ bool Board::check_vertical(int vert, int hor) {
  * Helper method to check diagonal win
  * @param vert: Vertical index
  * @param hor: Horizontal index 
+ * @param board: Current state of board
+ * @param player: Current player
+ * return: True if win, false if not
  */
-bool Board::check_diagonal(int vert, int hor) {
-    string curr = mBoard[vert][hor];
+bool Board::check_diagonal(int vert, int hor, vector< vector<string> > board, string player) {
+    string curr = player;
     if (curr == "-") {
         return false;
     }
@@ -167,7 +169,7 @@ bool Board::check_diagonal(int vert, int hor) {
         int right_hor = hor;
         // Checks right diagonal
         for (int i = 0; i < FOUR; i++) {
-            if (mBoard[right_vert][right_hor] == curr) {
+            if (board[right_vert][right_hor] == curr) {
                 right_dia_count++;
                 right_vert--;
                 right_hor++;
@@ -178,7 +180,7 @@ bool Board::check_diagonal(int vert, int hor) {
         }
         // Checks left diagonal
         for (int i = 0; i < FOUR; i++) {
-            if (mBoard[vert][hor] == curr) {
+            if (board[vert][hor] == curr) {
                 left_dia_count++;
                 vert--;
                 hor--;
@@ -188,10 +190,10 @@ bool Board::check_diagonal(int vert, int hor) {
             }
         }
     }
-    // For horizontal spots 0, 1, 2
+    // For vertical column indices 0, 1, 2
     else if (hor < THREE) {
         for (int i = 0; i < FOUR; i++) {
-            if (mBoard[vert][hor] == curr) {
+            if (board[vert][hor] == curr) {
                 count++;
                 vert--;
                 hor++;
@@ -201,10 +203,10 @@ bool Board::check_diagonal(int vert, int hor) {
             }
         }
     }
-    // For horizontal spots 4, 5, 6
+    // For vertical column indices 4, 5, 6
     else {
         for (int i = 0; i < FOUR; i++) {
-            if (mBoard[vert][hor] == curr) {
+            if (board[vert][hor] == curr) {
                 count++;
                 vert--;
                 hor--;
@@ -225,25 +227,28 @@ bool Board::check_diagonal(int vert, int hor) {
 
 /*
  * Checks if any player won
+ * @param board: Current state of board
+ * @param player: Current player
+ * return: True if win, false if not
  */
-bool Board::check_win() {
+bool Board::check_win(vector<vector<string>> board, string player) {
     for (int i = BOARD_WIDTH_HEIGHT-1; i > 0; i--) {
         for (int j = 0; j < BOARD_WIDTH_HEIGHT; j++) {
             // Checks horizontal win
             if (j < FOUR) {
-                if (check_horizontal(i, j)) {
+                if (check_horizontal(i, j, board, player)) {
                     return true;
                 }   
             }
             // Checks vertical win
             if (i-THREE > 0) {
-                if (check_vertical(i, j)) {
+                if (check_vertical(i, j, board, player)) {
                     return true;
                 }
             }
             // Checks diagonal win
             if (i > THREE) {
-                if (check_diagonal(i, j)) {
+                if (check_diagonal(i, j, board, player)) {
                     return true;
                 }
             }
