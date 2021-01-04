@@ -39,12 +39,36 @@ class Computer {
         bool winning(vector<vector<string>> board, string player);
 
         /*
+         * Returns a value based on "best move"
+         * @param board: The current state of the board
+         * @return: a value based on the "best move"
+         */
+        int evaluate(vector<vector<string>> board, string player);
+
+        /*
+         * Returns +2 if there is a line of two pieces
+         * @param board: The current state of the bard;
+         * @param player: The current player;
+         * @return +2 if there is a line of two pieces
+         */
+        int lines_of_2_score(vector<vector<string>> board, string player);
+
+        /*
+         * Returns +3 if there is a line of three pieces
+         * @param board: The current state of the bard;
+         * @param player: The current player;
+         * @return +3 if there is a line of three pieces
+         */
+        int lines_of_3_score(vector<vector<string>> board, string player);
+
+        /*
          * Checks win for the player
          * @param board: The current state of the board
          * @param player: The current player
+         * @param depth: How far the recursion will go
          * @return: The evaluation value 
          */ 
-        int minimax(vector<vector<string>> board, string player);
+        int minimax(vector<vector<string>> board, int depth, string player);
         
         
 };
