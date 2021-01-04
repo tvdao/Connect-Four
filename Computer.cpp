@@ -32,9 +32,10 @@ bool Computer::is_moves_left(vector<vector<string>> board) {
  * @param board: The current state of the board
  * @param player: The current player
  * @param column: The column where the piece was added
+ * @param row: The row where the piece was added
  * @return: a value based on the "best move"
  */
-int Computer::evaluate(vector<vector<string>> board, string player, int column) {
+int Computer::evaluate(vector<vector<string>> board, string player, int column, int row) {
     
 }
 
@@ -43,9 +44,11 @@ int Computer::evaluate(vector<vector<string>> board, string player, int column) 
  * @param board: The current state of the bard;
  * @param player: The current player;
  * @param column: The column where the piece was added
+ * @param row: The row where the piece was added
  * @return +2 if there is a line of two pieces
  */
-int lines_of_2_score(vector<vector<string>> board, string player) {
+int lines_of_2_score(vector<vector<string>> board, string player, int column, int row) {
+    int count = 0;
     if (player == human_player) {
         
     } 
@@ -59,8 +62,9 @@ int lines_of_2_score(vector<vector<string>> board, string player) {
  * @param board: The current state of the board
  * @param player: The current player
  * @param column: The column where the piece was added
+ * @param row: The row where the piece was added
  * @return: true if there is a win, false if not
  */ 
-bool Computer::winning(vector<vector<string>> board, string player) {
+bool Computer::winning(vector<vector<string>> board, string player, int column, int row) {
     return board_obj.check_win(board, player);
 }
