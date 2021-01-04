@@ -6,6 +6,7 @@
 using namespace std;
 
 // ------ Defines -------
+#define TEN 10
 
 class Computer {
     private:
