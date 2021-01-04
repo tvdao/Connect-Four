@@ -27,10 +27,38 @@ bool Computer::is_moves_left(vector<vector<string>> board) {
     return false;
 }
 
+/*
+ * Returns a value based on "best move"
+ * @param board: The current state of the board
+ * @param player: The current player
+ * @param column: The column where the piece was added
+ * @return: a value based on the "best move"
+ */
+int Computer::evaluate(vector<vector<string>> board, string player, int column) {
+    
+}
+
+/*
+ * Returns +2 if there is a line of two pieces
+ * @param board: The current state of the bard;
+ * @param player: The current player;
+ * @param column: The column where the piece was added
+ * @return +2 if there is a line of two pieces
+ */
+int lines_of_2_score(vector<vector<string>> board, string player) {
+    if (player == human_player) {
+        
+    } 
+    else {
+
+    }
+}
+
  /*
  * Checks win for the player
  * @param board: The current state of the board
  * @param player: The current player
+ * @param column: The column where the piece was added
  * @return: true if there is a win, false if not
  */ 
 bool Computer::winning(vector<vector<string>> board, string player) {
