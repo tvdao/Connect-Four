@@ -39,5 +39,10 @@ Computer::Computer(Board::Board board_object) {
  * @return: true if there is a win, false if not
  */ 
 bool winning(vector<vector<string>> board, string player) {
-
+    if (check_win(board, player)) {
+        return true;
+    }
+    else {
+        return false;
+    }
 }
