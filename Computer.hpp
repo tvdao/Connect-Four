@@ -61,8 +61,8 @@ class Computer {
         * @param row: The row where the piece was added
         * @return +2 or +3 if there is a line of two or three pieces
         */
-        int Computer::lines_of_score(vector<vector<string>> board, string player, int column, int row);
-        
+        int lines_of_score(vector<vector<string>> board, string player, int column, int row);
+
         /*
          * Checks win for the player
          * @param board: The current state of the board

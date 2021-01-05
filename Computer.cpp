@@ -40,21 +40,13 @@ int Computer::evaluate(vector<vector<string>> board, string player, int column, 
 }
 
 /*
- * Returns +2 or +3 if there is a line of two or three pieces
- * @param board: The current state of the bard;
- * @param player: The current player;
- * @param column: The column where the piece was added
- * @param row: The row where the piece was added
- * @return +2 if there is a line of two pieces
+ * Helper method for lines_of_score, returns row score
  */
-int Computer::lines_of_score(vector<vector<string>> board, string player, int column, int row) {
+int horizontal_score(vector<vector<string>> board, string player, int column, int row) {
     int count = 0;
     int total = 0;
     int incr_point_col = column;
     int dec_point_col = column;
-    int incr_point_vert = row;
-    int dec_point_vert = row;
-
     for (int i = 0; i < FOUR; i++) {
         dec_point_col--;
         incr_point_col++;
@@ -76,8 +68,17 @@ int Computer::lines_of_score(vector<vector<string>> board, string player, int co
         total = total + 2;
     }
     else {}
-    // reset count;
-    count = 0;
+    return total;
+}
+
+/*
+ * Helper method for lines_of_score, returns column score
+ */
+int vertical_score(vector<vector<string>> board, string player, int column, int row) {
+    int count = 0;
+    int total = 0;
+    int incr_point_vert = row;
+    int dec_point_vert = row;
     for (int i = 0; i < FOUR; i++) {
         dec_point_vert--;
         incr_point_vert++;
@@ -99,6 +100,58 @@ int Computer::lines_of_score(vector<vector<string>> board, string player, int co
         total = total + 2;
     }
     else {}
+    return total;
+}
+
+/*
+ * Helper method for lines_of_score, returns diagonal score
+ */
+int diagonal_score(vector<vector<string>> board, string player, int column, int row) {
+    int count = 0;
+    int total = 0;
+    int incr_point_vert = row;
+    int dec_point_vert = row;
+    for (int i = 0; i < FOUR; i++) {
+        
+    }
+    for (int i = 0; i < FOUR; i++) {
+        dec_point_vert--;
+        incr_point_vert++;
+        if (dec_point_vert > 0) {
+            if (board[dec_point_vert][column] == player) {
+                count++;
+            }
+        }
+        if (incr_point_vert < SEVEN) {
+            if (board[incr_point_vert][column] == player) {
+                count++;
+            }
+        }
+    }
+    if (count == 2) {
+        total = total + 3;
+    }
+    else if (count == 1) {
+        total = total + 2;
+    }
+    else {}
+    return total;
+}
+
+/*
+ * Returns +2 or +3 if there is a line of two or three pieces
+ * @param board: The current state of the bard;
+ * @param player: The current player;
+ * @param column: The column where the piece was added
+ * @param row: The row where the piece was added
+ * @return +2 if there is a line of two pieces
+ */
+int Computer::lines_of_score(vector<vector<string>> board, string player, int column, int row) {
+    int total = 0;
+
+    total += horizontal_score(board, player, column, row);
+    total += vertical_score(board, player, column, row);
+    
     return total;
 }
 
