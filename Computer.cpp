@@ -36,25 +36,70 @@ bool Computer::is_moves_left(vector<vector<string>> board) {
  * @return: a value based on the "best move"
  */
 int Computer::evaluate(vector<vector<string>> board, string player, int column, int row) {
-    
+    return 0;
 }
 
 /*
- * Returns +2 if there is a line of two pieces
+ * Returns +2 or +3 if there is a line of two or three pieces
  * @param board: The current state of the bard;
  * @param player: The current player;
  * @param column: The column where the piece was added
  * @param row: The row where the piece was added
  * @return +2 if there is a line of two pieces
  */
-int lines_of_2_score(vector<vector<string>> board, string player, int column, int row) {
+int Computer::lines_of_score(vector<vector<string>> board, string player, int column, int row) {
     int count = 0;
-    if (player == human_player) {
-        
-    } 
-    else {
+    int total = 0;
+    int incr_point_col = column;
+    int dec_point_col = column;
+    int incr_point_vert = row;
+    int dec_point_vert = row;
 
+    for (int i = 0; i < FOUR; i++) {
+        dec_point_col--;
+        incr_point_col++;
+        if (incr_point_col < SEVEN) {
+            if (board[row][incr_point_col] == player) {
+                count++;
+            }
+        }
+        if (dec_point_col > -1) {
+            if (board[row][dec_point_col] == player) {
+                count++;
+            }
+        }
     }
+    if (count == 2) {
+        total = total + 3;
+    }
+    else if (count == 1) {
+        total = total + 2;
+    }
+    else {}
+    // reset count;
+    count = 0;
+    for (int i = 0; i < FOUR; i++) {
+        dec_point_vert--;
+        incr_point_vert++;
+        if (dec_point_vert > 0) {
+            if (board[dec_point_vert][column] == player) {
+                count++;
+            }
+        }
+        if (incr_point_vert < SEVEN) {
+            if (board[incr_point_vert][column] == player) {
+                count++;
+            }
+        }
+    }
+    if (count == 2) {
+        total = total + 3;
+    }
+    else if (count == 1) {
+        total = total + 2;
+    }
+    else {}
+    return total;
 }
 
  /*
@@ -65,6 +110,6 @@ int lines_of_2_score(vector<vector<string>> board, string player, int column, in
  * @param row: The row where the piece was added
  * @return: true if there is a win, false if not
  */ 
-bool Computer::winning(vector<vector<string>> board, string player, int column, int row) {
+bool Computer::winning(vector<vector<string>> board, string player) {
     return board_obj.check_win(board, player);
 }

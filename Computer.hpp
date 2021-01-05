@@ -7,6 +7,11 @@ using namespace std;
 
 // ------ Defines -------
 #define TEN 10
+#define FOUR 4
+#define SIX 6
+#define TWO 2
+#define SEVEN 7
+#define THREE 3
 
 class Computer {
     private:
@@ -49,25 +54,15 @@ class Computer {
         int evaluate(vector<vector<string>> board, string player, int column, int row);
 
         /*
-         * Returns +2 if there is a line of two pieces
-         * @param board: The current state of the bard;
-         * @param player: The current player;
-         * @param column: The column where the piece was added
-         * @param row: The row where the piece was added
-         * @return +2 if there is a line of two pieces
-         */
-        int lines_of_2_score(vector<vector<string>> board, string player, int column, int row);
-
-        /*
-         * Returns +3 if there is a line of three pieces
-         * @param board: The current state of the bard;
-         * @param player: The current player;
-         * @param column: The column where the piece was added
-         * @param row: The row where the piece was added
-         * @return +3 if there is a line of three pieces
-         */
-        int lines_of_3_score(vector<vector<string>> board, string player, int column, int row);
-
+        * Returns +2 or +3 if there is a line of two or three pieces
+        * @param board: The current state of the bard;
+        * @param player: The current player;
+        * @param column: The column where the piece was added
+        * @param row: The row where the piece was added
+        * @return +2 or +3 if there is a line of two or three pieces
+        */
+        int Computer::lines_of_score(vector<vector<string>> board, string player, int column, int row);
+        
         /*
          * Checks win for the player
          * @param board: The current state of the board
