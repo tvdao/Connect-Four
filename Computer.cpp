@@ -67,8 +67,12 @@ int horizontal_score(vector<vector<string>> board, string player, int column, in
     else if (count == 1) {
         total = total + 2;
     }
-    else {}
-    return total;
+    if (player == "X") {
+        return total;
+    }
+    else {
+        return total - (total*TWO);
+    }
 }
 
 /*
@@ -99,8 +103,12 @@ int vertical_score(vector<vector<string>> board, string player, int column, int 
     else if (count == 1) {
         total = total + 2;
     }
-    else {}
-    return total;
+    if (player == "X") {
+        return total;
+    }
+    else {
+        return total - (total*TWO);
+    }
 }
 
 /*
@@ -108,6 +116,7 @@ int vertical_score(vector<vector<string>> board, string player, int column, int 
  */
 int top_left_diagonal(vector<vector<string>> board, string player, int column, int row) {
     int count = 0; 
+    int total = 0;
     for (int i = 0; i < FOUR; i++) {
         column--;
         row--;
@@ -118,12 +127,17 @@ int top_left_diagonal(vector<vector<string>> board, string player, int column, i
         }
     }
     if (count == TWO) {
-        return THREE;
+        total += THREE;
     }
     else if (count == 1) {
-        return TWO;
+        total += TWO;
     }
-    return 0;
+    if (player == "X") {
+        return total;
+    }
+    else {
+        return total - (total*TWO);
+    }
 }
 
 /*
@@ -131,6 +145,7 @@ int top_left_diagonal(vector<vector<string>> board, string player, int column, i
  */
 int bottom_left_diagonal(vector<vector<string>> board, string player, int column, int row) {
     int count = 0; 
+    int total = 0;
     for (int i = 0; i < FOUR; i++) {
         column--;
         row++;
@@ -141,12 +156,17 @@ int bottom_left_diagonal(vector<vector<string>> board, string player, int column
         }
     }
     if (count == TWO) {
-        return THREE;
+        total += THREE;
     }
     else if (count == 1) {
-        return TWO;
+        total += TWO;
     }
-    return 0;
+    if (player == "X") {
+        return total;
+    }
+    else {
+        return total - (total*TWO);
+    }
 }
 
 /*
@@ -154,6 +174,7 @@ int bottom_left_diagonal(vector<vector<string>> board, string player, int column
  */
 int top_right_diagonal(vector<vector<string>> board, string player, int column, int row) {
     int count = 0; 
+    int total = 0;
     for (int i = 0; i < FOUR; i++) {
         column++;
         row--;
@@ -164,12 +185,17 @@ int top_right_diagonal(vector<vector<string>> board, string player, int column, 
         }
     }
     if (count == TWO) {
-        return THREE;
+        total += THREE;
     }
     else if (count == 1) {
-        return TWO;
+        total += TWO;
     }
-    return 0;
+    if (player == "X") {
+        return total;
+    }
+    else {
+        return total - (total*TWO);
+    }
 }
 
 /*
@@ -177,6 +203,7 @@ int top_right_diagonal(vector<vector<string>> board, string player, int column, 
  */
 int bottom_right_diagonal(vector<vector<string>> board, string player, int column, int row) {
     int count = 0; 
+    int total = 0;
     for (int i = 0; i < FOUR; i++) {
         column++;
         row++;
@@ -187,12 +214,17 @@ int bottom_right_diagonal(vector<vector<string>> board, string player, int colum
         }
     }
     if (count == TWO) {
-        return THREE;
+        total += THREE;
     }
     else if (count == 1) {
-        return TWO;
+        total += TWO;
     }
-    return 0;
+    if (player == "X") {
+        return total;
+    }
+    else {
+        return total - (total*TWO);
+    }
 }
 
 /*
