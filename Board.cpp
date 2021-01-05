@@ -96,7 +96,6 @@ bool Board::check_horizontal(int vert, int hor, vector< vector<string> > board, 
     // Checks the horizontal for 4 in a row
     while (count < FOUR) {
         if (curr == board[vert][hor]) {
-            cout << "vert: " << vert << " index: " << hor << " | "<<  board[vert][hor] << endl;
             count++;
             hor++;
         }
@@ -126,14 +125,13 @@ bool Board::check_vertical(int vert, int hor, vector< vector<string> > board, st
     if (board[vert][hor] == "-") {
         return false;
     }
-    int count = 1;
-    int index = vert-1;
+    int count = 0;
 
     // Checks the vertical for 4 in a row
-    while (count <= FOUR) {
-        if (curr == board[index][hor]) {
+    while (count < FOUR) {
+        if (curr == board[vert][hor]) {
             count++;
-            index--;
+            vert--;
         }
         else {
             break;
