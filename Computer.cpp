@@ -45,23 +45,23 @@ int Computer::evaluate(vector<vector<string>> board, string player, int column, 
 int horizontal_score(vector<vector<string>> board, string player, int column, int row) {
     int count = 0;
     int total = 0;
-    int incr_point_col = column;
-    int dec_point_col = column;
+    int incr_point_hor = column;
+    int dec_point_hor = column;
     for (int i = 0; i < FOUR; i++) {
-        dec_point_col--;
-        incr_point_col++;
-        if (incr_point_col < SEVEN) {
-            if (board[row][incr_point_col] == player) {
+        dec_point_hor--;
+        incr_point_hor++;
+        if (incr_point_hor < SEVEN) {
+            if (board[row][incr_point_hor] == player) {
                 count++;
             }
         }
-        if (dec_point_col > -1) {
-            if (board[row][dec_point_col] == player) {
+        if (dec_point_hor > -1) {
+            if (board[row][dec_point_hor] == player) {
                 count++;
             }
         }
     }
-    if (count == 2) {
+    if (count >= 2) {
         total = total + 3;
     }
     else if (count == 1) {
@@ -93,7 +93,7 @@ int vertical_score(vector<vector<string>> board, string player, int column, int 
             }
         }
     }
-    if (count == 2) {
+    if (count >= 2) {
         total = total + 3;
     }
     else if (count == 1) {
@@ -104,37 +104,107 @@ int vertical_score(vector<vector<string>> board, string player, int column, int 
 }
 
 /*
+ * Helper method for diagonal score
+ */
+int top_left_diagonal(vector<vector<string>> board, string player, int column, int row) {
+    int count = 0; 
+    for (int i = 0; i < FOUR; i++) {
+        column--;
+        row--;
+        if (row > 0 && column > -1) {
+            if (board[row][column] == player) {
+                count++;
+            }
+        }
+    }
+    if (count == TWO) {
+        return THREE;
+    }
+    else if (count == 1) {
+        return TWO;
+    }
+    return 0;
+}
+
+/*
+ * Helper method for diagonal score
+ */
+int bottom_left_diagonal(vector<vector<string>> board, string player, int column, int row) {
+    int count = 0; 
+    for (int i = 0; i < FOUR; i++) {
+        column--;
+        row++;
+        if (row < 7 && column > -1) {
+            if (board[row][column] == player) {
+                count++;
+            }
+        }
+    }
+    if (count == TWO) {
+        return THREE;
+    }
+    else if (count == 1) {
+        return TWO;
+    }
+    return 0;
+}
+
+/*
+ * Helper method for diagonal score
+ */
+int top_right_diagonal(vector<vector<string>> board, string player, int column, int row) {
+    int count = 0; 
+    for (int i = 0; i < FOUR; i++) {
+        column++;
+        row--;
+        if (row > 0 && column < 7) {
+            if (board[row][column] == player) {
+                count++;
+            }
+        }
+    }
+    if (count == TWO) {
+        return THREE;
+    }
+    else if (count == 1) {
+        return TWO;
+    }
+    return 0;
+}
+
+/*
+ * Helper method for diagonal score
+ */
+int bottom_right_diagonal(vector<vector<string>> board, string player, int column, int row) {
+    int count = 0; 
+    for (int i = 0; i < FOUR; i++) {
+        column++;
+        row++;
+        if (row < SEVEN && column < SEVEN) {
+            if (board[row][column] == player) {
+                count++;
+            }
+        }
+    }
+    if (count == TWO) {
+        return THREE;
+    }
+    else if (count == 1) {
+        return TWO;
+    }
+    return 0;
+}
+
+/*
  * Helper method for lines_of_score, returns diagonal score
  */
 int diagonal_score(vector<vector<string>> board, string player, int column, int row) {
-    int count = 0;
     int total = 0;
-    int incr_point_vert = row;
-    int dec_point_vert = row;
-    for (int i = 0; i < FOUR; i++) {
-        
-    }
-    for (int i = 0; i < FOUR; i++) {
-        dec_point_vert--;
-        incr_point_vert++;
-        if (dec_point_vert > 0) {
-            if (board[dec_point_vert][column] == player) {
-                count++;
-            }
-        }
-        if (incr_point_vert < SEVEN) {
-            if (board[incr_point_vert][column] == player) {
-                count++;
-            }
-        }
-    }
-    if (count == 2) {
-        total = total + 3;
-    }
-    else if (count == 1) {
-        total = total + 2;
-    }
-    else {}
+    total += bottom_left_diagonal(board, player, column, row);
+    total += bottom_right_diagonal(board, player, column, row);
+    total += top_left_diagonal(board, player, column, row);
+    total += top_right_diagonal(board, player, column, row);
+
     return total;
 }
 
@@ -148,10 +218,9 @@ int diagonal_score(vector<vector<string>> board, string player, int column, int 
  */
 int Computer::lines_of_score(vector<vector<string>> board, string player, int column, int row) {
     int total = 0;
-
     total += horizontal_score(board, player, column, row);
     total += vertical_score(board, player, column, row);
-    
+    total += diagonal_score(board, player, column, row);
     return total;
 }
 
