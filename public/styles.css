@@ -1,4 +1,5 @@
-.h{
-    color: red;
+.board {
+    margin: 0 auto;
+    border-spacing: 0px 0px;
     background-color: red;
-}
+  }
