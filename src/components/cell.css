@@ -17,11 +17,19 @@
   width: 85px;
   margin: 7.5px 0px 0px 6.5px;
   border-radius: 100px;
-  background-color: white;
+  background-color: rgb(240, 240, 240);
 }
 
-.header {
+.player1 {
   background-color: red;
-  width: 1198px;
-  height: 94px;
+  border-radius: 100px;
+  height: 85px;
+  width: 85px;
+}
+
+.player2 {
+  background-color: green;
+  border-radius: 100px;
+  height: 85px;
+  width: 85px;
 }

@@ -1,20 +1,44 @@
 import React, {useState} from "react";
 import Board from "./components/Board";
-import {initialGrid} from "./gameLogic"
+import {initialGrid, checkWin, placePiece} from "./gameLogic"
 
 function App() {
     const [board, setBoard] = useState(initialGrid);
-
-    const [player, setPlayer] = useState(false);
+    const [winner, setWinner] = useState(false);
+    const [player, setPlayer] = useState(1);
     
-    const updateBoard = (e) => {
-        console.log("row: " + e[0] + " col: " + e[1]);
+    const updateBoard = ({col, row}) => {
+        if (!placePiece(board, player, col)) {
+            return;
+        }
+        if (checkWin(board, player)) {
+            setWinner(true);
+            return;
+        }
+        setPlayer(player === 1 ? 2 : 1);
     }
+
+    const resetGame = () => (
+        <button onClick={() => {
+            setBoard(initialGrid);
+            setPlayer(1);
+            setWinner(false);
+        }}>
+            Reset Game
+        </button>
+    )
+
     return (
-        <Board 
+        <div>
+            <Board 
             board = {board}
             updateBoard = {updateBoard}
-        />
+            />
+            <div>
+                <p>{winner ? "Winner: Player " + player : "Next Player: " + player }</p>
+                {resetGame()}
+            </div>
+        </div>
     )
 }
 
