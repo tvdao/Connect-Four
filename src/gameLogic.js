@@ -1,3 +1,21 @@
+/**
+ * Filename: gameLogic.js
+ * Author: Tri Dao
+ * Date: 4/22/21
+ * 
+ * Summary of File:
+ *      This file contains functions that encompass the
+ * essential functions of connect 4. Such as, checking 
+ * if there is a win in the valid directions, as well as 
+ * setting up and updating the board
+ */
+
+/**
+ * Creates the board, fill with Object that has information
+ * of the player(piece) and the corresponding row and col
+ * 
+ * @return inital Board
+ */
 const initialGrid = () => {
     let board = [];
     for (let row = 0; row < 6; row ++) {
@@ -8,12 +26,21 @@ const initialGrid = () => {
                 row: row,
                 col: col
             })
-            console.log(board[row][col].piece);
         }
     }
     return board;
 }
 
+/**
+ * Place piece of specific player in the column that was clicked,
+ * and update the board
+ * 
+ * @param board - current state of the board
+ * @param player - current player that will be assigned at column
+ * @param col - columnb where piece will be inserted
+ * 
+ * @return true if piece is placed, false otherwise
+ */
 const placePiece = (board, player, col) => {
     for (let row = 5; row > -1; row--) {
         if (board[row][col].piece === 0) {
@@ -25,6 +52,14 @@ const placePiece = (board, player, col) => {
     return false;
 }
 
+/**
+ * Check horizontal win based on player
+ * 
+ * @param board - current state of the board
+ * @param player - current player
+ * 
+ * @return true if win, false otherwise
+ */
 const horizontalWin = (board, player) => {
     for (let row = 5; row > -1; row--) {
         for (let col = 0; col < 4; col++) {
@@ -39,6 +74,14 @@ const horizontalWin = (board, player) => {
     }
 }
 
+/**
+ * Check veritcal win based on player
+ * 
+ * @param board - current state of the board
+ * @param player - current player
+ * 
+ * @return true if win, false otherwise
+ */
 const verticalWin = (board, player) => {
     for (let row = 5; row > 2; row--) {
         for (let col = 0; col < 7; col++) {
@@ -53,6 +96,14 @@ const verticalWin = (board, player) => {
     return false;
 }
 
+/**
+ * Check diagonal win based on player
+ * 
+ * @param board - current state of the board
+ * @param player - current player
+ * 
+ * @return true if win, false otherwise
+ */
 const diagonalWin = (board, player) => {
     for (let row = 5; row > 2; row--) {
         for (let col = 0; col < 7; col++) {
@@ -77,6 +128,14 @@ const diagonalWin = (board, player) => {
     return false;
 }
 
+/**
+ * Checks if there is a win on the board
+ * 
+ * @param board - current state of the board
+ * @param player - current player
+ * 
+ * @return true if win, false otherwise
+ */
 const checkWin = (board, player) => {
     if (diagonalWin(board, player) || 
         verticalWin(board, player) || 
